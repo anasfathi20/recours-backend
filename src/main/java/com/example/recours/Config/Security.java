@@ -1,19 +1,17 @@
 package com.example.recours.Config;
 
-import com.example.recours.Service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.example.recours.Service.CustomUserDetailsService;
 
 
 
@@ -31,32 +29,35 @@ public class Security  {
                 .authorizeHttpRequests(
                         auth ->
                                 auth
-                                       .requestMatchers("/h2-console","/h2-console/*","/api/auth/login").permitAll()
-                                       .anyRequest().authenticated()
-                                        // .anyRequest().permitAll()
+                                    //    .requestMatchers("/h2-console","/h2-console/*","/api/auth/login").permitAll()
+                                    //    .anyRequest().authenticated()
+                                        .anyRequest().permitAll()
                 )
-                .headers((headersConfigurer) -> {
-                        headersConfigurer.frameOptions(frame -> frame.disable());
+                .headers((headers) -> {
+                        headers.frameOptions(frame -> frame.disable());
                 })
+                // .cors(
+                //     cors -> cors.disable()
+                // )
                 ;
         return http.build();
     }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                // registry.addMapping("/**").allowedOriginPatterns("http://127.0.0.1*","http://localhost*");
-                // registry.addMapping("/verify").allowedOrigins("*").allowedMethods("*");
-                registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("*")
-                .allowedHeaders("*")
-                .exposedHeaders("*");
-            }
-        };
-    }
+    // @Bean
+    // public WebMvcConfigurer corsConfigurer() {
+    //     return new WebMvcConfigurer() {
+    //         @Override
+    //         public void addCorsMappings(CorsRegistry registry) {
+    //             registry.addMapping("/**").allowedOriginPatterns("http://127.0.0.1*","http://localhost*");
+    //             // registry.addMapping("/verify").allowedOrigins("*").allowedMethods("*");
+    //             // registry.addMapping("/**")
+    //             // .allowedOrigins("*")
+    //             // .allowedMethods("*")
+    //             // .allowedHeaders("*")
+    //             // .exposedHeaders("*");
+    //         }
+    //     };
+    // }
 
     @Bean
     public PasswordEncoder passwordEncoder(){

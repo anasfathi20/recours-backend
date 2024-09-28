@@ -1,17 +1,19 @@
 package com.example.recours.Controller;
 
 
-import com.example.recours.Entity.Customer;
-import com.example.recours.Repository.CustomerRepo;
-import org.springframework.stereotype.Controller;
+import java.util.Base64;
+import java.util.Optional;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Base64;
-import java.util.Optional;
+import com.example.recours.Entity.Customer;
+import com.example.recours.Repository.CustomerRepo;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

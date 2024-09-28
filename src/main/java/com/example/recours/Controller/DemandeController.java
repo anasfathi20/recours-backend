@@ -2,19 +2,21 @@ package com.example.recours.Controller;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.recours.Entity.Demande;
-import com.example.recours.Repository.*;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.security.core.context.SecurityContextHolder;
-
-import com.example.recours.Entity.Customer;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.recours.Entity.Demande;
+import com.example.recours.Repository.AidTypeRepo;
+import com.example.recours.Repository.ChefRepo;
+import com.example.recours.Repository.CustomerRepo;
+import com.example.recours.Repository.DemandeRepo;
+import com.example.recours.Repository.SituationTypeRepo;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/demande")
 public class DemandeController {
