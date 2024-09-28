@@ -1,8 +1,6 @@
 package com.example.recours.Entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -21,10 +19,8 @@ import lombok.Setter;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long IDCS;
-
-    private String Identifiant;
+    // @GeneratedValue(strategy = GenerationType.AUTO)
+    private String IDCS;
 
     private String MDP;
 
